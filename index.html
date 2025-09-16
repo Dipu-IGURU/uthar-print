@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-header">
+                <div class="profile-picture">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-email">traineeiguru@gmail.com</div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn-dashboard">DASHBOARD</button>
+                <button class="btn-logout">LOGOUT</button>
+            </div>
+            
+            <nav class="navigation">
+                <ul>
+                    <li class="active"><a href="#profile-page">Profile</a></li>
+                    <li><a href="#track-order-page">Your Order</a></li>
+                    <li><a href="#raise-ticket-page">Raise Ticket Status</a></li>
+                    <li><a href="#my-tickets-page">My Tickets</a></li>
+                    <li><a href="#order-cancellation-page">Order Cancellation</a></li>
+                    <li><a href="#order-history-page">Order History</a></li>
+                    <li><a href="#support-page">Support From Technical</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Profile Page (Default) -->
+            <div id="profile-page" class="page-content active">
+                <!-- Personal Information Section -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Personal Information</h2>
+                        <i class="fas fa-edit edit-icon"></i>
+                    </div>
+                    <form class="form-section">
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="traineeiguru@gmail.com" readonly>
+                        </div>
+                        <button type="submit" class="btn-update">UPDATE PROFILE</button>
+                    </form>
+                </div>
+                
+                <!-- Delivery Address Section -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Delivery Address</h2>
+                    </div>
+                    <form class="form-section">
+                        <div class="form-group">
+                            <label for="delivery-name">Name</label>
+                            <input type="text" id="delivery-name" name="delivery-name" placeholder="Enter delivery name">
+                        </div>
+                        <div class="form-group">
+                            <label for="delivery-email">Email</label>
+                            <input type="email" id="delivery-email" name="delivery-email" placeholder="Enter delivery email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone-code">Phone Code +44</label>
+                            <input type="tel" id="phone-code" name="phone-code" placeholder="Enter phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="postcode">Post code</label>
+                            <input type="text" id="postcode" name="postcode" placeholder="Enter post code">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" placeholder="Enter your address" rows="4"></textarea>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="same-address" name="same-address" checked>
+                            <label for="same-address">Same address for Invoice</label>
+                        </div>
+                        <button type="submit" class="btn-update">UPDATE ADDRESS</button>
+                    </form>
+                </div>
+                
+                <!-- Update Password Section -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Update Profile Password</h2>
+                    </div>
+                    <form class="form-section">
+                        <div class="form-group">
+                            <label for="new-password">Type new password</label>
+                            <div class="password-input">
+                                <input type="password" id="new-password" name="new-password" placeholder="Enter new password">
+                                <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-update">UPDATE PASSWORD</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Track Order Page -->
+            <div id="track-order-page" class="page-content">
+                <div class="track-order-container">
+                    <div class="track-order-header">
+                        <h1>Track Order</h1>
+                        <div class="search-container">
+                            <input type="text" id="order-id-input" placeholder="Order Id" class="order-search-input">
+                            <button class="search-btn" onclick="searchOrder()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="order-table-container">
+                        <div class="order-table-header">
+                            <div class="table-header-cell">Product Details</div>
+                            <div class="table-header-cell">Order Id</div>
+                            <div class="table-header-cell">Total</div>
+                            <div class="table-header-cell">Action</div>
+                        </div>
+                        <div id="order-results" class="order-results">
+                            <!-- Order results will be displayed here -->
+                        </div>
+                    </div>
+                    
+                    <div class="help-section">
+                        <button class="btn-help" onclick="askForHelp()">ASK FOR HELP.</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Raise Ticket Page -->
+            <div id="raise-ticket-page" class="page-content">
+                <div class="raise-ticket-container">
+                    <div class="ticket-header">
+                        <h1>Raise Ticket</h1>
+                        <p>Fill out the form below to submit your support request</p>
+                    </div>
+                    
+                    <form id="raise-ticket-form" class="ticket-form">
+                        <!-- Personal Details Section -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ticket-name">Name</label>
+                                <input type="text" id="ticket-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticket-email">Email</label>
+                                <input type="email" id="ticket-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticket-mobile">Mobile Number</label>
+                                <input type="tel" id="ticket-mobile" name="mobile" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Ticket Details Section -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ticket-title">Ticket Title</label>
+                                <input type="text" id="ticket-title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-number">Order Number</label>
+                                <input type="text" id="order-number" name="orderNumber">
+                            </div>
+                        </div>
+                        
+                        <!-- Department and Urgency Section -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select id="department" name="department" required>
+                                    <option value="">Select Department</option>
+                                    <option value="ARTWORK">ARTWORK</option>
+                                    <option value="PACKAGING">PACKAGING</option>
+                                    <option value="PRINTING">PRINTING</option>
+                                    <option value="DELIVERY">DELIVERY</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="urgency">Urgency</label>
+                                <select id="urgency" name="urgency" required>
+                                    <option value="">Select Urgency</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                    <option value="Critical">Critical</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Description Section -->
+                        <div class="form-group full-width">
+                            <label for="ticket-description">Description</label>
+                            <textarea id="ticket-description" name="description" rows="5" placeholder="Please describe your issue in detail..." required></textarea>
+                        </div>
+                        
+                        <!-- File Upload Section -->
+                        <div class="file-upload-section">
+                            <label class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>If You Have this ticket related photo so please upload it</span>
+                                <input type="file" id="ticket-file" name="file" accept="image/*,.pdf,.doc,.docx" multiple>
+                                <div class="file-upload-button">Choose File</div>
+                            </label>
+                            <div class="file-upload-info">No file chosen</div>
+                            <div id="file-preview" class="file-preview"></div>
+                        </div>
+                        
+                        <!-- Important Notice Section -->
+                        <div class="important-notice">
+                            <h3>Important</h3>
+                            <div class="notice-items">
+                                <div class="notice-item">
+                                    <div class="notice-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notice-text">
+                                        Our team is actively working on addressing this issue, and we assure you that we are committed to resolving it in a timely manner.
+                                    </div>
+                                </div>
+                                
+                                <div class="notice-item">
+                                    <div class="notice-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notice-text">
+                                        We understand the importance of a swift resolution and are dedicated to ensuring that this matter is resolved efficiently. Our estimated timeline for resolving your request is providing any necessary details we would be able to expedite the resolution process further.
+                                    </div>
+                                </div>
+                                
+                                <div class="notice-item">
+                                    <div class="notice-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notice-text">
+                                        If you have any additional information or any relevant photos pertaining to the request ticket, please do not hesitate to upload them using the file provided. Our assistance in providing any necessary details we would be able to expedite the resolution process further.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="thank-you-message">
+                                Thank you for your patience and cooperation as we work to resolve this matter promptly.
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="form-submit">
+                            <button type="submit" class="btn-raise-ticket">RAISE TICKET</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="my-tickets-page" class="page-content">
+                <div class="section">
+                    <h2>My Tickets</h2>
+                    <p>This page is under construction.</p>
+                </div>
+            </div>
+
+            <div id="order-cancellation-page" class="page-content">
+                <div class="section">
+                    <h2>Order Cancellation</h2>
+                    <p>This page is under construction.</p>
+                </div>
+            </div>
+
+            <div id="order-history-page" class="page-content">
+                <div class="section">
+                    <h2>Order History</h2>
+                    <p>This page is under construction.</p>
+                </div>
+            </div>
+
+            <div id="support-page" class="page-content">
+                <div class="section">
+                    <h2>Support From Technical</h2>
+                    <p>This page is under construction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
