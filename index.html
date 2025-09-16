@@ -271,16 +271,71 @@
             </div>
 
             <div id="my-tickets-page" class="page-content">
-                <div class="section">
-                    <h2>My Tickets</h2>
-                    <p>This page is under construction.</p>
+                <div class="my-tickets-container">
+                    <div class="tickets-header">
+                        <h1>My Tickets</h1>
+                    </div>
+                    
+                    <div class="tickets-table-container">
+                        <table class="tickets-table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Urgency</th>
+                                    <th>Department</th>
+                                    <th>Order Id</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tickets-tbody">
+                                <!-- Tickets will be populated here -->
+                            </tbody>
+                        </table>
+                        
+                        <div id="no-tickets" class="no-tickets" style="display: none;">
+                            <div class="no-tickets-content">
+                                <i class="fas fa-ticket-alt"></i>
+                                <h3>No Tickets Found</h3>
+                                <p>You haven't submitted any tickets yet.</p>
+                                <button class="btn-create-ticket" onclick="navigateToRaiseTicket()">
+                                    <i class="fas fa-plus"></i>
+                                    Create New Ticket
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="order-cancellation-page" class="page-content">
-                <div class="section">
-                    <h2>Order Cancellation</h2>
-                    <p>This page is under construction.</p>
+                <div class="order-cancel-container">
+                    <div class="cancel-header">
+                        <h1>Orders Cancel</h1>
+                        <div class="search-container">
+                            <input type="text" id="cancel-order-id-input" placeholder="Order Id" class="order-search-input">
+                            <button class="search-btn" onclick="searchCancelOrder()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="cancel-table-container">
+                        <div class="cancel-table-header">
+                            <div class="table-header-cell">Product Details</div>
+                            <div class="table-header-cell">Order Id</div>
+                            <div class="table-header-cell">Total</div>
+                            <div class="table-header-cell">Action</div>
+                        </div>
+                        <div id="cancel-order-results" class="cancel-order-results">
+                            <!-- Order results will be displayed here -->
+                        </div>
+                    </div>
+                    
+                    <div class="help-section">
+                        <button class="btn-help" onclick="askForHelp()">ASK FOR THE HELP</button>
+                    </div>
                 </div>
             </div>
 

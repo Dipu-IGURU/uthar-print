@@ -614,18 +614,18 @@ body {
 
 /* Raise Ticket Page Styles */
 .raise-ticket-container {
-    background-color: #1a1a1a;
+    background-color: white;
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: white;
+    color: #333;
 }
 
 .ticket-header {
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #ddd;
 }
 
 .ticket-header h1 {
@@ -636,7 +636,7 @@ body {
 }
 
 .ticket-header p {
-    color: #ccc;
+    color: #666;
     font-size: 14px;
     margin: 0;
 }
@@ -664,7 +664,7 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: #ccc;
+    color: #555;
     font-size: 14px;
 }
 
@@ -673,11 +673,11 @@ body {
 .ticket-form textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #444;
+    border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
-    background-color: #2a2a2a;
-    color: white;
+    background-color: white;
+    color: #333;
     transition: all 0.3s ease;
 }
 
@@ -702,16 +702,16 @@ body {
 .file-upload-section {
     margin: 30px 0;
     padding: 20px;
-    border: 2px dashed #444;
+    border: 2px dashed #ddd;
     border-radius: 8px;
     text-align: center;
-    background-color: #2a2a2a;
+    background-color: #f9f9f9;
     transition: all 0.3s ease;
 }
 
 .file-upload-section:hover {
     border-color: #00bcd4;
-    background-color: #333;
+    background-color: #f0f8ff;
 }
 
 .file-upload-label {
@@ -729,7 +729,7 @@ body {
 }
 
 .file-upload-label span {
-    color: #ccc;
+    color: #666;
     font-size: 14px;
     margin-bottom: 15px;
     text-align: center;
@@ -768,13 +768,14 @@ body {
 }
 
 .file-preview-item {
-    background-color: #333;
+    background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
     max-width: 200px;
+    border: 1px solid #ddd;
 }
 
 .file-preview-item i {
@@ -784,7 +785,7 @@ body {
 
 .file-preview-item span {
     font-size: 12px;
-    color: #ccc;
+    color: #555;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -803,11 +804,12 @@ body {
 
 /* Important Notice Section */
 .important-notice {
-    background-color: #2a2a2a;
+    background-color: #f8f9fa;
     border-radius: 8px;
     padding: 25px;
     margin: 30px 0;
     border-left: 4px solid #00bcd4;
+    border: 1px solid #e9ecef;
 }
 
 .important-notice h3 {
@@ -848,7 +850,7 @@ body {
 }
 
 .notice-text {
-    color: #ccc;
+    color: #666;
     font-size: 13px;
     line-height: 1.6;
     text-align: justify;
@@ -959,5 +961,595 @@ body {
     
     .notice-text {
         font-size: 12px;
+    }
+}
+
+/* My Tickets Page Styles */
+.my-tickets-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tickets-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tickets-header h1 {
+    font-size: 28px;
+    color: #333;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Tickets Table Styles */
+.tickets-table-container {
+    overflow-x: auto;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tickets-table thead {
+    background-color: #f8f9fa;
+}
+
+.tickets-table th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.tickets-table td {
+    padding: 15px 12px;
+    color: #666;
+    font-size: 14px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.tickets-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+.tickets-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Ticket Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.open {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.status-badge.in-progress {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+.status-badge.resolved {
+    background-color: #e8f5e8;
+    color: #388e3c;
+}
+
+.status-badge.closed {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* Urgency Badges */
+.urgency-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.urgency-badge.low {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+}
+
+.urgency-badge.medium {
+    background-color: #fff8e1;
+    color: #f57c00;
+}
+
+.urgency-badge.high {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.urgency-badge.critical {
+    background-color: #ffcdd2;
+    color: #b71c1c;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Action Buttons */
+.btn-view-ticket {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view-ticket:hover {
+    background-color: #0056b3;
+}
+
+.btn-view-ticket i {
+    margin-right: 4px;
+}
+
+/* No Tickets State */
+.no-tickets {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.no-tickets-content i {
+    font-size: 64px;
+    color: #dee2e6;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.no-tickets-content h3 {
+    color: #495057;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.no-tickets-content p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0 0 25px 0;
+}
+
+.btn-create-ticket {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-create-ticket:hover {
+    background-color: #00acc1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.btn-create-ticket i {
+    margin-right: 8px;
+}
+
+/* Responsive Design for My Tickets */
+@media (max-width: 768px) {
+    .my-tickets-container {
+        padding: 20px;
+    }
+    
+    .tickets-header h1 {
+        font-size: 24px;
+    }
+    
+    .tickets-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tickets-table {
+        min-width: 600px;
+    }
+    
+    .tickets-table th,
+    .tickets-table td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+    
+    .no-tickets {
+        padding: 40px 15px;
+    }
+    
+    .no-tickets-content i {
+        font-size: 48px;
+    }
+    
+    .no-tickets-content h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .my-tickets-container {
+        padding: 15px;
+    }
+    
+    .tickets-header h1 {
+        font-size: 20px;
+    }
+    
+    .tickets-table th,
+    .tickets-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+    
+    .btn-create-ticket {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}
+
+/* Order Cancellation Page Styles */
+.order-cancel-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.cancel-header h1 {
+    font-size: 24px;
+    color: #1a1a1a;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Cancel Table Styles */
+.cancel-table-container {
+    margin-bottom: 30px;
+}
+
+.cancel-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 2px solid #007bff;
+    background-color: #f8f9fa;
+    border-radius: 5px 5px 0 0;
+}
+
+.cancel-order-results {
+    min-height: 200px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.cancel-order-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-order-row:hover {
+    background-color: #f8f9fa;
+}
+
+.cancel-order-row:last-child {
+    border-bottom: none;
+}
+
+.cancel-product-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cancel-product-image {
+    width: 50px;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 20px;
+}
+
+.cancel-product-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+.cancel-product-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.cancel-order-id {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.cancel-order-total {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+.cancel-order-action {
+    text-align: right;
+}
+
+.btn-cancel-order {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-cancel-order:hover {
+    background-color: #c82333;
+}
+
+.btn-cancel-order:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.cancel-status {
+    color: #dc3545;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.no-cancel-orders {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.no-cancel-orders i {
+    font-size: 48px;
+    color: #ddd;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.loading-cancel {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.loading-cancel i {
+    font-size: 24px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Order Status Indicators */
+.order-status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.order-status.processing {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.order-status.shipped {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.order-status.delivered {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.order-status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Cancellation Confirmation Modal */
+.cancel-confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cancel-modal-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-modal-content h3 {
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.cancel-modal-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-confirm-cancel {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-confirm-cancel:hover {
+    background-color: #c82333;
+}
+
+.btn-cancel-modal {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel-modal:hover {
+    background-color: #545b62;
+}
+
+/* Responsive Design for Order Cancellation */
+@media (max-width: 768px) {
+    .order-cancel-container {
+        padding: 20px;
+    }
+    
+    .cancel-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+    
+    .cancel-header h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .cancel-table-header,
+    .cancel-order-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .table-header-cell:last-child,
+    .cancel-order-action {
+        text-align: center;
+    }
+    
+    .cancel-product-details {
+        justify-content: center;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-cancel-container {
+        padding: 15px;
+    }
+    
+    .cancel-header h1 {
+        font-size: 18px;
+    }
+    
+    .cancel-modal-content {
+        padding: 20px;
+    }
+    
+    .cancel-modal-content h3 {
+        font-size: 18px;
     }
 }

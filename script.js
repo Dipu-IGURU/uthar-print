@@ -456,6 +456,12 @@ function handleTicketSubmission(form) {
             submittedAt: new Date().toISOString()
         });
         
+        // Add ticket to the list
+        addTicketToList({
+            ...ticketData,
+            ticketId
+        });
+        
         // Show success message
         showTicketSubmissionSuccess(ticketId);
         
@@ -628,7 +634,7 @@ function showTicketSubmissionSuccess(ticketId) {
             }
             
             .modal-content {
-                background-color: #2a2a2a;
+                background-color: white;
                 border-radius: 10px;
                 padding: 40px;
                 text-align: center;
@@ -636,7 +642,7 @@ function showTicketSubmissionSuccess(ticketId) {
                 width: 90%;
                 position: relative;
                 z-index: 1001;
-                color: white;
+                color: #333;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
             
@@ -653,7 +659,7 @@ function showTicketSubmissionSuccess(ticketId) {
             }
             
             .modal-content p {
-                color: #ccc;
+                color: #666;
                 margin-bottom: 15px;
                 line-height: 1.6;
             }
@@ -697,8 +703,558 @@ function closeTicketModal() {
     }
 }
 
+// My Tickets functionality
+let userTickets = [
+    {
+        id: 'TKT-001234',
+        title: 'Print Quality Issue',
+        urgency: 'High',
+        department: 'PRINTING',
+        orderId: 'ORD-5678',
+        status: 'Open',
+        submittedDate: '2024-01-15',
+        description: 'Colors are not matching the original design'
+    },
+    {
+        id: 'TKT-001235',
+        title: 'Delivery Delay',
+        urgency: 'Medium',
+        department: 'DELIVERY',
+        orderId: 'ORD-5679',
+        status: 'In Progress',
+        submittedDate: '2024-01-14',
+        description: 'Package not delivered on promised date'
+    },
+    {
+        id: 'TKT-001236',
+        title: 'Artwork Revision Required',
+        urgency: 'Low',
+        department: 'ARTWORK',
+        orderId: 'ORD-5680',
+        status: 'Resolved',
+        submittedDate: '2024-01-12',
+        description: 'Need to update logo in the design'
+    }
+];
+
+function initializeMyTicketsPage() {
+    loadTickets();
+}
+
+function loadTickets() {
+    const ticketsTableBody = document.getElementById('tickets-tbody');
+    const noTicketsDiv = document.getElementById('no-tickets');
+    const ticketsTable = document.querySelector('.tickets-table');
+    
+    if (!ticketsTableBody) return;
+    
+    // Check if there are any tickets
+    if (userTickets.length === 0) {
+        ticketsTable.style.display = 'none';
+        noTicketsDiv.style.display = 'block';
+        return;
+    }
+    
+    // Show table and hide no tickets message
+    ticketsTable.style.display = 'table';
+    noTicketsDiv.style.display = 'none';
+    
+    // Clear existing rows
+    ticketsTableBody.innerHTML = '';
+    
+    // Populate table with tickets
+    userTickets.forEach(ticket => {
+        const row = createTicketRow(ticket);
+        ticketsTableBody.appendChild(row);
+    });
+}
+
+function createTicketRow(ticket) {
+    const row = document.createElement('tr');
+    
+    row.innerHTML = `
+        <td><strong>${ticket.id}</strong></td>
+        <td>
+            <div style="font-weight: 500; color: #333;">${ticket.title}</div>
+            <div style="font-size: 12px; color: #999; margin-top: 2px;">
+                Submitted: ${formatDate(ticket.submittedDate)}
+            </div>
+        </td>
+        <td>
+            <span class="urgency-badge ${ticket.urgency.toLowerCase()}">${ticket.urgency}</span>
+        </td>
+        <td>
+            <span style="background-color: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">
+                ${ticket.department}
+            </span>
+        </td>
+        <td>${ticket.orderId || '-'}</td>
+        <td>
+            <span class="status-badge ${ticket.status.toLowerCase().replace(' ', '-')}">${ticket.status}</span>
+        </td>
+        <td>
+            <button class="btn-view-ticket" onclick="viewTicketDetails('${ticket.id}')">
+                <i class="fas fa-eye"></i>
+                View
+            </button>
+        </td>
+    `;
+    
+    return row;
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+function viewTicketDetails(ticketId) {
+    const ticket = userTickets.find(t => t.id === ticketId);
+    if (!ticket) return;
+    
+    // Create and show ticket details modal
+    showTicketDetailsModal(ticket);
+}
+
+function showTicketDetailsModal(ticket) {
+    const modal = document.createElement('div');
+    modal.className = 'ticket-details-modal';
+    modal.innerHTML = `
+        <div class="modal-overlay" onclick="closeTicketDetailsModal()"></div>
+        <div class="modal-content ticket-details-content">
+            <div class="modal-header">
+                <h2>Ticket Details</h2>
+                <button class="btn-close" onclick="closeTicketDetailsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="ticket-info">
+                <div class="info-row">
+                    <div class="info-label">Ticket ID:</div>
+                    <div class="info-value"><strong>${ticket.id}</strong></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Title:</div>
+                    <div class="info-value">${ticket.title}</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Status:</div>
+                    <div class="info-value">
+                        <span class="status-badge ${ticket.status.toLowerCase().replace(' ', '-')}">${ticket.status}</span>
+                    </div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Urgency:</div>
+                    <div class="info-value">
+                        <span class="urgency-badge ${ticket.urgency.toLowerCase()}">${ticket.urgency}</span>
+                    </div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Department:</div>
+                    <div class="info-value">${ticket.department}</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Order ID:</div>
+                    <div class="info-value">${ticket.orderId || 'N/A'}</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Submitted Date:</div>
+                    <div class="info-value">${formatDate(ticket.submittedDate)}</div>
+                </div>
+                
+                <div class="info-row full-width">
+                    <div class="info-label">Description:</div>
+                    <div class="info-value description">${ticket.description}</div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn-close-modal" onclick="closeTicketDetailsModal()">Close</button>
+            </div>
+        </div>
+    `;
+    
+    // Add modal styles
+    const modalStyles = `
+        <style>
+            .ticket-details-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            
+            .ticket-details-content {
+                background-color: white;
+                border-radius: 10px;
+                max-width: 600px;
+                width: 100%;
+                max-height: 80vh;
+                overflow-y: auto;
+                position: relative;
+                z-index: 1001;
+                color: #333;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 30px;
+                border-bottom: 1px solid #e9ecef;
+                background-color: #f8f9fa;
+                border-radius: 10px 10px 0 0;
+            }
+            
+            .modal-header h2 {
+                color: #333;
+                margin: 0;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            
+            .btn-close {
+                background: none;
+                border: none;
+                font-size: 18px;
+                color: #666;
+                cursor: pointer;
+                padding: 5px;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+            }
+            
+            .btn-close:hover {
+                background-color: #e9ecef;
+                color: #333;
+            }
+            
+            .ticket-info {
+                padding: 30px;
+            }
+            
+            .info-row {
+                display: flex;
+                margin-bottom: 15px;
+                align-items: flex-start;
+            }
+            
+            .info-row.full-width {
+                flex-direction: column;
+            }
+            
+            .info-label {
+                font-weight: 600;
+                color: #495057;
+                min-width: 120px;
+                margin-right: 15px;
+            }
+            
+            .info-value {
+                color: #666;
+                flex: 1;
+            }
+            
+            .info-value.description {
+                margin-top: 8px;
+                padding: 15px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                border-left: 3px solid #00bcd4;
+                line-height: 1.6;
+            }
+            
+            .modal-actions {
+                padding: 20px 30px;
+                border-top: 1px solid #e9ecef;
+                text-align: right;
+                background-color: #f8f9fa;
+                border-radius: 0 0 10px 10px;
+            }
+            
+            .btn-close-modal {
+                background-color: #6c757d;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            
+            .btn-close-modal:hover {
+                background-color: #545b62;
+            }
+        </style>
+    `;
+    
+    document.head.insertAdjacentHTML('beforeend', modalStyles);
+    document.body.appendChild(modal);
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTicketDetailsModal() {
+    const modal = document.querySelector('.ticket-details-modal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+    }
+}
+
+function navigateToRaiseTicket() {
+    // Navigate to raise ticket page
+    const raiseTicketLink = document.querySelector('a[href="#raise-ticket-page"]');
+    if (raiseTicketLink) {
+        raiseTicketLink.click();
+    }
+}
+
+// Add ticket to the list (called when a new ticket is submitted)
+function addTicketToList(ticketData) {
+    const newTicket = {
+        id: ticketData.ticketId,
+        title: ticketData.title,
+        urgency: ticketData.urgency,
+        department: ticketData.department,
+        orderId: ticketData.orderNumber || '',
+        status: 'Open',
+        submittedDate: new Date().toISOString().split('T')[0],
+        description: ticketData.description
+    };
+    
+    userTickets.unshift(newTicket); // Add to beginning of array
+    
+    // Refresh the tickets display if we're on the my tickets page
+    const myTicketsPage = document.getElementById('my-tickets-page');
+    if (myTicketsPage && myTicketsPage.classList.contains('active')) {
+        loadTickets();
+    }
+}
+
+// Order Cancellation functionality
+let cancelableOrders = [
+    {
+        id: 'ORD-001',
+        product: {
+            name: 'Custom Business Cards',
+            description: 'Premium Card Stock - 500 pieces',
+            image: 'fas fa-id-card'
+        },
+        total: '$45.99',
+        status: 'Processing',
+        canCancel: true
+    },
+    {
+        id: 'ORD-002',
+        product: {
+            name: 'Marketing Flyers',
+            description: 'A4 Glossy Paper - 1000 pieces',
+            image: 'fas fa-file-alt'
+        },
+        total: '$89.50',
+        status: 'Processing',
+        canCancel: true
+    },
+    {
+        id: 'ORD-003',
+        product: {
+            name: 'Company Brochures',
+            description: 'Tri-fold Design - 200 pieces',
+            image: 'fas fa-book-open'
+        },
+        total: '$125.00',
+        status: 'Shipped',
+        canCancel: false
+    }
+];
+
+function initializeOrderCancellationPage() {
+    const cancelOrderInput = document.getElementById('cancel-order-id-input');
+    if (cancelOrderInput) {
+        cancelOrderInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCancelOrder();
+            }
+        });
+    }
+}
+
+function searchCancelOrder() {
+    const orderIdInput = document.getElementById('cancel-order-id-input');
+    const orderId = orderIdInput.value.trim();
+    const orderResults = document.getElementById('cancel-order-results');
+    
+    if (!orderId) {
+        showNotification('Please enter an Order ID', 'error');
+        return;
+    }
+    
+    // Show loading state
+    orderResults.innerHTML = `
+        <div class="loading-cancel">
+            <i class="fas fa-spinner"></i>
+            <div>Searching for order...</div>
+        </div>
+    `;
+    
+    // Simulate API call with delay
+    setTimeout(() => {
+        // Filter orders based on search (case insensitive)
+        const filteredOrders = cancelableOrders.filter(order => 
+            order.id.toLowerCase().includes(orderId.toLowerCase())
+        );
+        
+        if (filteredOrders.length === 0) {
+            orderResults.innerHTML = `
+                <div class="no-cancel-orders">
+                    <i class="fas fa-search"></i>
+                    <div>No orders found with ID: ${orderId}</div>
+                    <div style="margin-top: 10px; font-size: 12px; color: #999;">
+                        Please check your Order ID and try again.
+                    </div>
+                </div>
+            `;
+        } else {
+            displayCancelOrders(filteredOrders);
+        }
+    }, 1500);
+}
+
+function displayCancelOrders(orders) {
+    const orderResults = document.getElementById('cancel-order-results');
+    
+    const ordersHTML = orders.map(order => `
+        <div class="cancel-order-row">
+            <div class="cancel-product-details">
+                <div class="cancel-product-image">
+                    <i class="${order.product.image}"></i>
+                </div>
+                <div class="cancel-product-info">
+                    <h4>${order.product.name}</h4>
+                    <p>${order.product.description}</p>
+                    <div class="order-status ${order.status.toLowerCase()}">${order.status}</div>
+                </div>
+            </div>
+            <div class="cancel-order-id">${order.id}</div>
+            <div class="cancel-order-total">${order.total}</div>
+            <div class="cancel-order-action">
+                ${order.canCancel ? 
+                    `<button class="btn-cancel-order" onclick="confirmCancelOrder('${order.id}')">Cancel Order</button>` :
+                    `<span class="cancel-status">Cannot Cancel</span>`
+                }
+            </div>
+        </div>
+    `).join('');
+    
+    orderResults.innerHTML = ordersHTML;
+}
+
+function confirmCancelOrder(orderId) {
+    const order = cancelableOrders.find(o => o.id === orderId);
+    if (!order) return;
+    
+    // Show confirmation modal
+    const modal = document.createElement('div');
+    modal.className = 'cancel-confirmation-modal';
+    modal.innerHTML = `
+        <div class="cancel-modal-content">
+            <h3>Cancel Order Confirmation</h3>
+            <p>Are you sure you want to cancel order <strong>${orderId}</strong>?</p>
+            <p><strong>${order.product.name}</strong><br>
+            ${order.product.description}<br>
+            Total: ${order.total}</p>
+            <p style="color: #dc3545; font-size: 12px;">
+                <i class="fas fa-exclamation-triangle"></i>
+                This action cannot be undone.
+            </p>
+            <div class="modal-buttons">
+                <button class="btn-confirm-cancel" onclick="processCancelOrder('${orderId}')">
+                    Yes, Cancel Order
+                </button>
+                <button class="btn-cancel-modal" onclick="closeCancelModal()">
+                    No, Keep Order
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+}
+
+function processCancelOrder(orderId) {
+    // Find and update the order
+    const orderIndex = cancelableOrders.findIndex(o => o.id === orderId);
+    if (orderIndex !== -1) {
+        cancelableOrders[orderIndex].status = 'Cancelled';
+        cancelableOrders[orderIndex].canCancel = false;
+    }
+    
+    // Close modal
+    closeCancelModal();
+    
+    // Show success message
+    showNotification(`Order ${orderId} has been cancelled successfully`, 'success');
+    
+    // Refresh the display
+    const orderResults = document.getElementById('cancel-order-results');
+    if (orderResults.innerHTML.includes(orderId)) {
+        // Re-search to update the display
+        const searchInput = document.getElementById('cancel-order-id-input');
+        if (searchInput.value) {
+            setTimeout(() => {
+                searchCancelOrder();
+            }, 1000);
+        }
+    }
+    
+    // Log cancellation (in real app, this would be sent to server)
+    console.log('Order cancelled:', {
+        orderId,
+        cancelledAt: new Date().toISOString(),
+        reason: 'Customer request'
+    });
+}
+
+function closeCancelModal() {
+    const modal = document.querySelector('.cancel-confirmation-modal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+    }
+}
+
 // Initialize raise ticket form when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Add existing initialization code here
     initializeRaiseTicketForm();
+    initializeMyTicketsPage();
+    initializeOrderCancellationPage();
 });
