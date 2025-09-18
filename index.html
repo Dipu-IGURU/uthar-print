@@ -1,360 +1,1327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile Management</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- {% block head %} {% endblock %}{% load static %} -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Login - Digital Brains</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .form-input {
+            @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+        }
+        .btn-primary {
+            @apply w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+        }
+        .form-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1px solid #9CA3AF;
+            border-radius: 4px;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            position: relative;
+            top: 2px;
+        }
+        .form-checkbox:checked {
+            background-color: #3B82F6;
+            border-color: #3B82F6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.5 4.5L6 12L2.5 8.5L3.5 7.5L6 10L12.5 3.5L13.5 4.5Z'/%3E%3C/svg%3E");
+            background-size: 80%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top" style="background-color: rgb(1,18,36);">
+
+
+        <!-- End Top Bar -->
+
+        <div id="branding" class="branding d-flex align-items-center" style="background-color: #011224;">
+            <div class="container position-relative d-flex align-items-center justify-content-between">
+                <a href="#" id="logo" class="logo d-flex align-items-center" target="_blank" rel="noopener noreferrer">
+                    <img style="height: 80%;" loading="lazy"
+                        src="https://digital-brains.io/static/app/iguru3/assets/img/Digital_Brains_io.png" alt="">
+                </a>
+
+
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="https://digital-brains.io/"
+                                class="{% if request.path == '/' %}active{% endif %}">All Products</a>
+                        </li>
+
+                        <!-- Office -->
+                        <!-- ============================================================================================= -->
+
+
+                        <li class="dropdown"><a href="#"><span> Office</span> </i></a>
+                            <!-- <ul>
+                                <li><a class="dropdown-item"
+                                        href="https://digital-brains.io/website/wordpress-website/">WordPress
+                                        Website</a></li>
+                            </ul> -->
+                        </li>
+
+                         <!-- Marketing & Advertising -->
+                        <!-- ====================================================================================== -->
+
+                        <li class="dropdown"><a href="#"><span>Marketing & Advertising</span> <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a class="dropdown-item"
+                                        href="https://digital-brains.io/content-creation/website-copywriting/">Marketing</a></li>
+                                <li><a class="dropdown-item"
+                                        href="https://digital-brains.io/content-creation/video-creation/">Promotional</a></li>
+                            </ul>
+
+                        </li>
+
+                        <!-- Digital Marketing -->
+                        <!-- ===================================================================================== -->
+
+                        <li class="dropdown"><a href="#"><span> Retail Printing</span></a>
+                            <!-- <ul>
+                                <li><a class="dropdown-item"
+                                        href="https://digital-brains.io/digital-marketing/local-seo/">Local SEO</a></li>
+                            </ul> -->
+
+                        </li>
+
+                        <!-- Display Exhibition -->
+                        <!-- ============================================================================ -->
+
+                        <li class="dropdown"><a href="#"><span> Display Exhibition</span> <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a class="dropdown-item" href="https://store.digital-brains.io/">(Indoor)</a></li>
+
+                                <li><a class="dropdown-item"
+                                        href="https://digital-brains.io/services/remote-it-support/"> (Outdoor)</a></li>
+                            </ul>
+
+                        </li>
+                         
+                        <!--Festivals & Occasions -->
+                        <!-- ======================================================================================= -->
+                        <li class="dropdown"><a href="#"><span>Festivals & Occasions</span> <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a class="dropdown-item" href="https://digital-brains.io/free-file-transfer/">CHRISTMAS</a></li>
+                                <li><a class="dropdown-item" href="https://digital-brains.io/upload/">SEASONAL</a></li>
+                                <li><a class="dropdown-item" href="https://projectcamp.digital-brains.io/">Events & Occasions</a></li>
+                               
+                            </ul>
+
+                        </li>
+
+                        <!--ECO Products -->
+                        <!-- ===================================================================================== -->
+                        <li><a href="https://digital-brains.io/branding/"
+                                class="{% if request.path == '/branding/' %}active{% endif %}">ECO Products</a></li>
+
+                        <!-- Next Day Delivery -->
+                        <!-- ================================================================================== -->
+                        <li class="dropdown"><a href="#"><span>Next Day Delivery</span></a>
+                        </li>
+
+                        <!-- Sample Pack -->
+                        <!-- ================================================================================== -->
+                        <li class="dropdown"><a href="#"><span>Sample Pack</span></a>
+                        </li>
+
+                         <!-- Website        -->
+                        <!-- ================================================================================== -->
+                        <li><a href="https://printing.digital-brains.io/"
+                                class="{% if request.path == '/https://printing.digital-brains.io/' %}active{% endif %}">Website</a>
+                        </li>
+                    </ul>
+                    <i id="mobile-nav-toggle" class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+<!-- body -->
+<div class="container-fluid" style="margin-top: 100px; min-height: 100vh;">
+    <div class="row">
         <!-- Left Sidebar -->
-        <div class="sidebar">
-            <div class="profile-header">
-                <div class="profile-picture">
-                    <i class="fas fa-user"></i>
+        <div class="col-md-3 col-lg-2 sidebar" style="background-color: #f8f9fa; min-height: 100vh; padding: 20px 0;">
+            <div class="text-center mb-4">
+                <!-- User Avatar -->
+                <div class="user-avatar mb-3">
+                    <i class="bi bi-person-circle" style="font-size: 60px; color: #6c757d;"></i>
                 </div>
-                <div class="user-email">traineeiguru@gmail.com</div>
+                <p class="text-muted mb-4">traineeiguru@gmail.com</p>
+                
+                <!-- Action Buttons -->
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-primary btn-sm">DASHBOARD</button>
+                    <button class="btn btn-secondary btn-sm">LOGOUT</button>
+                </div>
             </div>
             
-            <div class="action-buttons">
-                <button class="btn-dashboard">DASHBOARD</button>
-                <button class="btn-logout">LOGOUT</button>
-            </div>
-            
-            <nav class="navigation">
-                <ul>
-                    <li class="active"><a href="#profile-page">Profile</a></li>
-                    <li><a href="#track-order-page">Your Order</a></li>
-                    <li><a href="#raise-ticket-page">Raise Ticket Status</a></li>
-                    <li><a href="#my-tickets-page">My Tickets</a></li>
-                    <li><a href="#order-cancellation-page">Order Cancellation</a></li>
-                    <li><a href="#order-history-page">Order History</a></li>
-                    <li><a href="#support-page">Support From Technical</a></li>
-                </ul>
+            <!-- Navigation Menu -->
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="#" data-content="profile" style="color: #007bff; background-color: #e3f2fd; border-radius: 5px; margin: 2px 0;">
+                    <i class="bi bi-person me-2"></i>Profile
+                </a>
+                <a class="nav-link" href="#" data-content="orders" style="color: #6c757d; margin: 2px 0;">
+                    <i class="bi bi-bag me-2"></i>Your Order
+                </a>
+                <a class="nav-link" href="#" data-content="raise-ticket" style="color: #6c757d; margin: 2px 0;">
+                    <i class="bi bi-ticket me-2"></i>Raise Ticket Status
+                </a>
+                <a class="nav-link" href="#" data-content="tickets" style="color: #6c757d; margin: 2px 0;">
+                    <i class="bi bi-list-ul me-2"></i>My Tickets
+                </a>
+                <a class="nav-link" href="#" data-content="cancellation" style="color: #6c757d; margin: 2px 0;">
+                    <i class="bi bi-x-circle me-2"></i>Order Cancellation
+                </a>
+                <a class="nav-link" href="#" data-content="history" style="color: #6c757d; margin: 2px 0;">
+                    <i class="bi bi-clock-history me-2"></i>Order History
+                </a>
+                <a class="nav-link" href="#" data-content="support" style="color: #6c757d; margin: 2px 0;">
+                    <i class="bi bi-headset me-2"></i>Support From Technical
+                </a>
             </nav>
         </div>
         
         <!-- Main Content Area -->
-        <div class="main-content">
-            <!-- Profile Page (Default) -->
-            <div id="profile-page" class="page-content active">
+        <div class="col-md-9 col-lg-10" style="padding: 20px; background-color: #ffffff;">
+            <!-- Profile Content (Default) -->
+            <div id="profileContent">
                 <!-- Personal Information Section -->
-                <div class="section">
-                    <div class="section-header">
-                        <h2>Personal Information</h2>
-                        <i class="fas fa-edit edit-icon"></i>
+                <div class="card mb-4" style="border: 1px solid #e9ecef; border-radius: 8px;">
+                    <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f8f9fa; border-bottom: 1px solid #e9ecef;">
+                        <h5 class="mb-0">Personal Information</h5>
+                        <i class="bi bi-pencil-square text-primary" style="cursor: pointer;"></i>
                     </div>
-                    <form class="form-section">
-                        <div class="form-group">
-                            <label for="fullname">Full Name</label>
-                            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name">
-                        </div>
-                        <div class="form-group">
-                            <label for="mobile">Mobile Number</label>
-                            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="traineeiguru@gmail.com" readonly>
-                        </div>
-                        <button type="submit" class="btn-update">UPDATE PROFILE</button>
-                    </form>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="mobileNumber" class="form-label">Mobile Number</label>
+                                    <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter your mobile number">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" value="traineeiguru@gmail.com" readonly>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">UPDATE PROFILE</button>
+                        </form>
+                    </div>
                 </div>
                 
                 <!-- Delivery Address Section -->
-                <div class="section">
-                    <div class="section-header">
-                        <h2>Delivery Address</h2>
+                <div class="card mb-4" style="border: 1px solid #e9ecef; border-radius: 8px;">
+                    <div class="card-header" style="background-color: #f8f9fa; border-bottom: 1px solid #e9ecef;">
+                        <h5 class="mb-0">Delivery Address</h5>
                     </div>
-                    <form class="form-section">
-                        <div class="form-group">
-                            <label for="delivery-name">Name</label>
-                            <input type="text" id="delivery-name" name="delivery-name" placeholder="Enter delivery name">
-                        </div>
-                        <div class="form-group">
-                            <label for="delivery-email">Email</label>
-                            <input type="email" id="delivery-email" name="delivery-email" placeholder="Enter delivery email">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone-code">Phone Code +44</label>
-                            <input type="tel" id="phone-code" name="phone-code" placeholder="Enter phone number">
-                        </div>
-                        <div class="form-group">
-                            <label for="postcode">Post code</label>
-                            <input type="text" id="postcode" name="postcode" placeholder="Enter post code">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea id="address" name="address" placeholder="Enter your address" rows="4"></textarea>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="same-address" name="same-address" checked>
-                            <label for="same-address">Same address for Invoice</label>
-                        </div>
-                        <button type="submit" class="btn-update">UPDATE ADDRESS</button>
-                    </form>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="deliveryName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="deliveryName" placeholder="Enter delivery name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="deliveryEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="deliveryEmail" placeholder="Enter delivery email">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Phone Code</label>
+                                    <select class="form-select">
+                                        <option>+44</option>
+                                        <option>+1</option>
+                                        <option>+91</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter phone number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="postCode" class="form-label">Post code</label>
+                                    <input type="text" class="form-control" id="postCode" placeholder="Enter post code">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea class="form-control" id="address" rows="3" placeholder="Enter your address."></textarea>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="sameAddress" checked>
+                                <label class="form-check-label" for="sameAddress">
+                                    Same address for invoice
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">UPDATE ADDRESS</button>
+                        </form>
+                    </div>
                 </div>
                 
-                <!-- Update Password Section -->
-                <div class="section">
-                    <div class="section-header">
-                        <h2>Update Profile Password</h2>
+                <!-- Update Profile Password Section -->
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px;">
+                    <div class="card-header" style="background-color: #f8f9fa; border-bottom: 1px solid #e9ecef;">
+                        <h5 class="mb-0">Update Profile Password</h5>
                     </div>
-                    <form class="form-section">
-                        <div class="form-group">
-                            <label for="new-password">Type new password</label>
-                            <div class="password-input">
-                                <input type="password" id="new-password" name="new-password" placeholder="Enter new password">
-                                <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="newPassword" class="form-label">Type new password</label>
+                                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm new password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Enter new password">
+                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn-update">UPDATE PASSWORD</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Track Order Page -->
-            <div id="track-order-page" class="page-content">
-                <div class="track-order-container">
-                    <div class="track-order-header">
-                        <h1>Track Order</h1>
-                        <div class="search-container">
-                            <input type="text" id="order-id-input" placeholder="Order Id" class="order-search-input">
-                            <button class="search-btn" onclick="searchOrder()">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="order-table-container">
-                        <div class="order-table-header">
-                            <div class="table-header-cell">Product Details</div>
-                            <div class="table-header-cell">Order Id</div>
-                            <div class="table-header-cell">Total</div>
-                            <div class="table-header-cell">Action</div>
-                        </div>
-                        <div id="order-results" class="order-results">
-                            <!-- Order results will be displayed here -->
-                        </div>
-                    </div>
-                    
-                    <div class="help-section">
-                        <button class="btn-help" onclick="askForHelp()">ASK FOR HELP.</button>
+                            <button type="submit" class="btn btn-primary">UPDATE PASSWORD</button>
+                        </form>
                     </div>
                 </div>
             </div>
 
-            <!-- Raise Ticket Page -->
-            <div id="raise-ticket-page" class="page-content">
-                <div class="raise-ticket-container">
-                    <div class="ticket-header">
-                        <h1>Raise Ticket</h1>
-                        <p>Fill out the form below to submit your support request</p>
+            <!-- My Tickets Content (Hidden by default) -->
+            <div id="ticketsContent" style="display: none;">
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div class="card-header" style="background-color: #ffffff; border-bottom: 1px solid #e9ecef;">
+                        <h4 class="mb-0">My Tickets</h4>
+                        <hr class="mt-2 mb-0">
                     </div>
-                    
-                    <form id="raise-ticket-form" class="ticket-form">
-                        <!-- Personal Details Section -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="ticket-name">Name</label>
-                                <input type="text" id="ticket-name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="ticket-email">Email</label>
-                                <input type="email" id="ticket-email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="ticket-mobile">Mobile Number</label>
-                                <input type="tel" id="ticket-mobile" name="mobile" required>
-                            </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead style="background-color: #f8f9fa;">
+                                    <tr>
+                                        <th class="border-0 py-3 px-4">Id</th>
+                                        <th class="border-0 py-3 px-4">Title</th>
+                                        <th class="border-0 py-3 px-4">Urgency</th>
+                                        <th class="border-0 py-3 px-4">Department</th>
+                                        <th class="border-0 py-3 px-4">Order Id</th>
+                                        <th class="border-0 py-3 px-4">Status</th>
+                                        <th class="border-0 py-3 px-4">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">TKT-001234</td>
+                                        <td class="py-3 px-4">
+                                            <div>Print Quality Issue</div>
+                                            <small class="text-muted">Submitted: Jan 15, 2024</small>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-danger rounded-pill">HIGH</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">PRINTING</span>
+                                        </td>
+                                        <td class="py-3 px-4">ORD-5678</td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">OPEN</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">TKT-001235</td>
+                                        <td class="py-3 px-4">
+                                            <div>Delivery Delay</div>
+                                            <small class="text-muted">Submitted: Jan 14, 2024</small>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-warning rounded-pill">MEDIUM</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">DELIVERY</span>
+                                        </td>
+                                        <td class="py-3 px-4">ORD-5679</td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-warning rounded-pill">IN PROGRESS</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">TKT-001236</td>
+                                        <td class="py-3 px-4">
+                                            <div>Artwork Revision Required</div>
+                                            <small class="text-muted">Submitted: Jan 12, 2024</small>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-success rounded-pill">LOW</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">ARTWORK</span>
+                                        </td>
+                                        <td class="py-3 px-4">ORD-5680</td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-success rounded-pill">RESOLVED</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">TKT-001237</td>
+                                        <td class="py-3 px-4">
+                                            <div>Payment Processing Issue</div>
+                                            <small class="text-muted">Submitted: Jan 10, 2024</small>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-danger rounded-pill">HIGH</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">BILLING</span>
+                                        </td>
+                                        <td class="py-3 px-4">ORD-5681</td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">OPEN</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4">TKT-001238</td>
+                                        <td class="py-3 px-4">
+                                            <div>Design Consultation Request</div>
+                                            <small class="text-muted">Submitted: Jan 8, 2024</small>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-success rounded-pill">LOW</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-info rounded-pill">DESIGN</span>
+                                        </td>
+                                        <td class="py-3 px-4">ORD-5682</td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge bg-success rounded-pill">RESOLVED</span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        
-                        <!-- Ticket Details Section -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="ticket-title">Ticket Title</label>
-                                <input type="text" id="ticket-title" name="title" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="order-number">Order Number</label>
-                                <input type="text" id="order-number" name="orderNumber">
-                            </div>
-                        </div>
-                        
-                        <!-- Department and Urgency Section -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="department">Department</label>
-                                <select id="department" name="department" required>
-                                    <option value="">Select Department</option>
-                                    <option value="ARTWORK">ARTWORK</option>
-                                    <option value="PACKAGING">PACKAGING</option>
-                                    <option value="PRINTING">PRINTING</option>
-                                    <option value="DELIVERY">DELIVERY</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="urgency">Urgency</label>
-                                <select id="urgency" name="urgency" required>
-                                    <option value="">Select Urgency</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
-                                    <option value="Critical">Critical</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <!-- Description Section -->
-                        <div class="form-group full-width">
-                            <label for="ticket-description">Description</label>
-                            <textarea id="ticket-description" name="description" rows="5" placeholder="Please describe your issue in detail..." required></textarea>
-                        </div>
-                        
-                        <!-- File Upload Section -->
-                        <div class="file-upload-section">
-                            <label class="file-upload-label">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span>If You Have this ticket related photo so please upload it</span>
-                                <input type="file" id="ticket-file" name="file" accept="image/*,.pdf,.doc,.docx" multiple>
-                                <div class="file-upload-button">Choose File</div>
-                            </label>
-                            <div class="file-upload-info">No file chosen</div>
-                            <div id="file-preview" class="file-preview"></div>
-                        </div>
-                        
-                        <!-- Important Notice Section -->
-                        <div class="important-notice">
-                            <h3>Important</h3>
-                            <div class="notice-items">
-                                <div class="notice-item">
-                                    <div class="notice-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                    </div>
-                                    <div class="notice-text">
-                                        Our team is actively working on addressing this issue, and we assure you that we are committed to resolving it in a timely manner.
-                                    </div>
-                                </div>
-                                
-                                <div class="notice-item">
-                                    <div class="notice-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                    </div>
-                                    <div class="notice-text">
-                                        We understand the importance of a swift resolution and are dedicated to ensuring that this matter is resolved efficiently. Our estimated timeline for resolving your request is providing any necessary details we would be able to expedite the resolution process further.
-                                    </div>
-                                </div>
-                                
-                                <div class="notice-item">
-                                    <div class="notice-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                    </div>
-                                    <div class="notice-text">
-                                        If you have any additional information or any relevant photos pertaining to the request ticket, please do not hesitate to upload them using the file provided. Our assistance in providing any necessary details we would be able to expedite the resolution process further.
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="thank-you-message">
-                                Thank you for your patience and cooperation as we work to resolve this matter promptly.
-                            </div>
-                        </div>
-                        
-                        <!-- Submit Button -->
-                        <div class="form-submit">
-                            <button type="submit" class="btn-raise-ticket">RAISE TICKET</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
-            <div id="my-tickets-page" class="page-content">
-                <div class="my-tickets-container">
-                    <div class="tickets-header">
-                        <h1>My Tickets</h1>
+            <!-- Order Cancellation Content (Hidden by default) -->
+            <div id="cancellationContent" style="display: none;">
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div class="card-header" style="background-color: #ffffff; border-bottom: 1px solid #e9ecef;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Orders Cancel</h4>
+                            <div class="d-flex align-items-center">
+                                <div class="input-group" style="width: 250px;">
+                                    <input type="text" class="form-control" placeholder="Order Id" id="orderSearchInput">
+                                    <button class="btn btn-primary" type="button" id="searchOrderBtn">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="tickets-table-container">
-                        <table class="tickets-table">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Urgency</th>
-                                    <th>Department</th>
-                                    <th>Order Id</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tickets-tbody">
-                                <!-- Tickets will be populated here -->
-                            </tbody>
-                        </table>
-                        
-                        <div id="no-tickets" class="no-tickets" style="display: none;">
-                            <div class="no-tickets-content">
-                                <i class="fas fa-ticket-alt"></i>
-                                <h3>No Tickets Found</h3>
-                                <p>You haven't submitted any tickets yet.</p>
-                                <button class="btn-create-ticket" onclick="navigateToRaiseTicket()">
-                                    <i class="fas fa-plus"></i>
-                                    Create New Ticket
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead style="background-color: #f8f9fa;">
+                                    <tr>
+                                        <th class="border-0 py-3 px-4 text-start">Product Details</th>
+                                        <th class="border-0 py-3 px-4 text-center">Order Id</th>
+                                        <th class="border-0 py-3 px-4 text-center">Total</th>
+                                        <th class="border-0 py-3 px-4 text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Sample order data -->
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/60x60?text=BC" alt="Business Cards" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                                <div>
+                                                    <h6 class="mb-1">Business Cards - Premium Quality</h6>
+                                                    <small class="text-muted">Quantity: 500 | Size: 3.5" x 2"</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-4 text-center">ORD-1234</td>
+                                        <td class="py-3 px-4 text-center">£45.99</td>
+                                        <td class="py-3 px-4 text-end">
+                                            <!-- Cancel Order button hidden for now -->
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/60x60?text=LH" alt="Letterheads" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                                <div>
+                                                    <h6 class="mb-1">Letterheads - Corporate Design</h6>
+                                                    <small class="text-muted">Quantity: 1000 | Size: A4</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-4 text-center">ORD-1235</td>
+                                        <td class="py-3 px-4 text-center">£89.50</td>
+                                        <td class="py-3 px-4 text-end">
+                                            <!-- Cancel Order button hidden for now -->
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td class="py-3 px-4">
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/60x60?text=FL" alt="Flyers" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                                <div>
+                                                    <h6 class="mb-1">Marketing Flyers - A5 Size</h6>
+                                                    <small class="text-muted">Quantity: 2000 | Size: A5</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-4 text-center">ORD-1236</td>
+                                        <td class="py-3 px-4 text-center">£125.00</td>
+                                        <td class="py-3 px-4 text-end">
+                                            <!-- Cancel Order button hidden for now -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4">
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/60x60?text=BN" alt="Banners" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                                <div>
+                                                    <h6 class="mb-1">Roll-up Banner - 2x6ft</h6>
+                                                    <small class="text-muted">Quantity: 1 | Size: 2ft x 6ft</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-4 text-center">ORD-1237</td>
+                                        <td class="py-3 px-4 text-center">£75.00</td>
+                                        <td class="py-3 px-4 text-end">
+                                            <!-- Cancel Order button hidden for now -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center" style="background-color: #ffffff; border-top: 1px solid #e9ecef; padding: 30px 20px;">
+                        <button class="btn btn-dark btn-lg px-5 py-3" style="font-weight: bold; letter-spacing: 1px; background-color: #000000 !important; border: none !important; min-width: 200px; color: #ffffff !important; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                            ASK FOR THE HELP
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Your Order / Track Order Content (Hidden by default) -->
+            <div id="ordersContent" style="display: none;">
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div class="card-header" style="background-color: #ffffff; border-bottom: 1px solid #e9ecef;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Track Order</h4>
+                            <div class="d-flex align-items-center">
+                                <div class="input-group" style="width: 250px;">
+                                    <input type="text" class="form-control" placeholder="Order Id" id="trackOrderSearchInput">
+                                    <button class="btn btn-primary" type="button" id="trackOrderSearchBtn">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead style="background-color: #f8f9fa;">
+                                    <tr>
+                                        <th class="border-0 py-3 px-4 text-start">Product Details</th>
+                                        <th class="border-0 py-3 px-4 text-center">Order Id</th>
+                                        <th class="border-0 py-3 px-4 text-center">Total</th>
+                                        <th class="border-0 py-3 px-4 text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Empty table body as shown in the image -->
+                                    <tr>
+                                        <td colspan="4" class="py-5 text-center text-muted">
+                                            <i class="bi bi-search" style="font-size: 48px; opacity: 0.3;"></i>
+                                            <p class="mt-3 mb-0">No orders found. Search for an order ID to track your order.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center" style="background-color: #ffffff; border-top: 1px solid #e9ecef; padding: 30px 20px;">
+                        <button class="btn btn-dark btn-lg px-5 py-3" style="font-weight: bold; letter-spacing: 1px; background-color: #000000 !important; border: none !important; min-width: 200px; color: #ffffff !important; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                            ASK FOR HELP.
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order History Content (Hidden by default) -->
+            <div id="historyContent" style="display: none;">
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background-color: #ffffff;">
+                    <div class="card-body p-5">
+                        <h4 class="mb-3" style="color: #333; font-weight: bold;">Order History</h4>
+                        <p class="text-muted mb-0" style="font-size: 16px;">This page is under construction.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support From Technical Content (Hidden by default) -->
+            <div id="supportContent" style="display: none;">
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background-color: #ffffff;">
+                    <div class="card-body p-5">
+                        <h4 class="mb-3" style="color: #333; font-weight: bold;">Support From Technical</h4>
+                        <p class="text-muted mb-0" style="font-size: 16px;">This page is under construction.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Raise Ticket Status Content (Hidden by default) -->
+            <div id="raiseTicketContent" style="display: none;">
+                <div class="card" style="border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background-color: #ffffff;">
+                    <div class="card-body p-5">
+                        <!-- Header Section -->
+                        <div class="text-center mb-5">
+                            <h2 class="mb-3" style="color: #20c997; font-weight: bold; font-size: 2.5rem;">Raise Ticket</h2>
+                            <p class="text-muted" style="font-size: 1.1rem;">Fill out the form below to submit your support request</p>
+                        </div>
+
+                        <!-- Form Section -->
+                        <form>
+                            <!-- Row 1: Personal Information -->
+                            <div class="row mb-4">
+                                <div class="col-md-4 mb-3">
+                                    <label for="ticketName" class="form-label fw-bold">Name</label>
+                                    <input type="text" class="form-control" id="ticketName" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="ticketEmail" class="form-label fw-bold">Email</label>
+                                    <input type="email" class="form-control" id="ticketEmail" value="traineeiguru@gmail.com" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="ticketMobile" class="form-label fw-bold">Mobile Number</label>
+                                    <input type="tel" class="form-control" id="ticketMobile" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Ticket Details -->
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="ticketTitle" class="form-label fw-bold">Ticket Title</label>
+                                    <input type="text" class="form-control" id="ticketTitle" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="orderNumber" class="form-label fw-bold">Order Number</label>
+                                    <input type="text" class="form-control" id="orderNumber" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Categorization -->
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <label for="department" class="form-label fw-bold">Department</label>
+                                    <select class="form-select" id="department" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                        <option selected>Select Department</option>
+                                        <option value="printing">Printing</option>
+                                        <option value="delivery">Delivery</option>
+                                        <option value="billing">Billing</option>
+                                        <option value="artwork">Artwork</option>
+                                        <option value="design">Design</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="urgency" class="form-label fw-bold">Urgency</label>
+                                    <select class="form-select" id="urgency" style="border: 1px solid #dee2e6; border-radius: 6px;">
+                                        <option selected>Select Urgency</option>
+                                        <option value="low">Low</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="critical">Critical</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Description -->
+                            <div class="row mb-4">
+                                <div class="col-12 mb-3">
+                                    <label for="description" class="form-label fw-bold">Description</label>
+                                    <textarea class="form-control" id="description" rows="4" placeholder="Please describe your issue in detail..." style="border: 1px solid #dee2e6; border-radius: 6px;"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- File Upload Section -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="border border-2 border-dashed rounded p-4 text-center" style="border-color: #dee2e6 !important; background-color: #f8f9fa;">
+                                        <div class="mb-3">
+                                            <i class="bi bi-cloud-upload" style="font-size: 2rem; color: #20c997;"></i>
+                                        </div>
+                                        <h6 class="mb-3" style="color: #20c997;">If You Have this ticket related photo so please upload it</h6>
+                                        <button type="button" class="btn mb-2" style="background-color: #20c997; color: white; border: none; padding: 10px 20px; border-radius: 6px;">
+                                            Choose File
+                                        </button>
+                                        <p class="text-muted mb-0 small">No file chosen</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Important Information Section -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="mb-3" style="color: #20c997; font-weight: bold;">Important</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                            Our team is actively working on addressing this issue, and we assure you that we are committed to resolving it in a timely manner.
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                            We understand the importance of a swift resolution and are dedicated to ensuring that this matter is resolved efficiently. Our estimated timeline for resolving your request is providing any necessary details we would be able to expedite the resolution process further.
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                            If you have any additional information or any relevant photos pertaining to the request ticket, please do not hesitate to upload them using the file provided. Our assistance in providing any necessary details we would be able to expedite the resolution process further.
+                                        </li>
+                                    </ul>
+                                    
+                                    <!-- Thank You Message Box -->
+                                    <div class="alert alert-info text-center mt-3" style="background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460;">
+                                        <strong>Thank you for your patience and cooperation as we work to resolve this matter promptly.</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-lg px-5 py-3" style="background-color: #20c997; color: white; border: none; border-radius: 6px; font-weight: bold; min-width: 200px;">
+                                    RAISE TICKET
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </div>
-            </div>
-
-            <div id="order-cancellation-page" class="page-content">
-                <div class="order-cancel-container">
-                    <div class="cancel-header">
-                        <h1>Orders Cancel</h1>
-                        <div class="search-container">
-                            <input type="text" id="cancel-order-id-input" placeholder="Order Id" class="order-search-input">
-                            <button class="search-btn" onclick="searchCancelOrder()">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="cancel-table-container">
-                        <div class="cancel-table-header">
-                            <div class="table-header-cell">Product Details</div>
-                            <div class="table-header-cell">Order Id</div>
-                            <div class="table-header-cell">Total</div>
-                            <div class="table-header-cell">Action</div>
-                        </div>
-                        <div id="cancel-order-results" class="cancel-order-results">
-                            <!-- Order results will be displayed here -->
-                        </div>
-                    </div>
-                    
-                    <div class="help-section">
-                        <button class="btn-help" onclick="askForHelp()">ASK FOR THE HELP</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="order-history-page" class="page-content">
-                <div class="section">
-                    <h2>Order History</h2>
-                    <p>This page is under construction.</p>
-                </div>
-            </div>
-
-            <div id="support-page" class="page-content">
-                <div class="section">
-                    <h2>Support From Technical</h2>
-                    <p>This page is under construction.</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<style>
+.sidebar {
+    border-right: 1px solid #e9ecef;
+}
+
+.nav-link {
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        margin-bottom: 20px;
+    }
     
+    .container-fluid {
+        margin-top: 80px;
+    }
+}
+</style>
+
+<script>
+// Toggle password visibility
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const passwordField = document.getElementById('confirmPassword');
+    const icon = this.querySelector('i');
+    
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+    }
+});
+
+// Navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link[data-content]');
+    const profileContent = document.getElementById('profileContent');
+    const ticketsContent = document.getElementById('ticketsContent');
+    const cancellationContent = document.getElementById('cancellationContent');
+    const ordersContent = document.getElementById('ordersContent');
+    const historyContent = document.getElementById('historyContent');
+    const supportContent = document.getElementById('supportContent');
+    const raiseTicketContent = document.getElementById('raiseTicketContent');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(navLink => {
+                navLink.classList.remove('active');
+                navLink.style.color = '#6c757d';
+                navLink.style.backgroundColor = 'transparent';
+            });
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            this.style.color = '#007bff';
+            this.style.backgroundColor = '#e3f2fd';
+            
+            // Show/hide content based on data-content attribute
+            const contentType = this.getAttribute('data-content');
+            
+            // Hide all content first
+            profileContent.style.display = 'none';
+            ticketsContent.style.display = 'none';
+            cancellationContent.style.display = 'none';
+            ordersContent.style.display = 'none';
+            historyContent.style.display = 'none';
+            supportContent.style.display = 'none';
+            raiseTicketContent.style.display = 'none';
+            
+            // Show the selected content
+            if (contentType === 'tickets') {
+                ticketsContent.style.display = 'block';
+            } else if (contentType === 'cancellation') {
+                cancellationContent.style.display = 'block';
+            } else if (contentType === 'orders') {
+                ordersContent.style.display = 'block';
+            } else if (contentType === 'history') {
+                historyContent.style.display = 'block';
+            } else if (contentType === 'support') {
+                supportContent.style.display = 'block';
+            } else if (contentType === 'raise-ticket') {
+                raiseTicketContent.style.display = 'block';
+            } else {
+                profileContent.style.display = 'block';
+            }
+        });
+    });
+
+    // Search functionality for Order Cancellation
+    const searchOrderBtn = document.getElementById('searchOrderBtn');
+    const orderSearchInput = document.getElementById('orderSearchInput');
+    
+    if (searchOrderBtn && orderSearchInput) {
+        searchOrderBtn.addEventListener('click', function() {
+            const searchTerm = orderSearchInput.value.trim();
+            if (searchTerm) {
+                // Here you would typically filter the orders based on the search term
+                console.log('Searching for order:', searchTerm);
+                // For now, just show an alert
+                alert('Searching for order: ' + searchTerm);
+            }
+        });
+        
+        orderSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchOrderBtn.click();
+            }
+        });
+    }
+
+    // Search functionality for Track Order
+    const trackOrderSearchBtn = document.getElementById('trackOrderSearchBtn');
+    const trackOrderSearchInput = document.getElementById('trackOrderSearchInput');
+    
+    if (trackOrderSearchBtn && trackOrderSearchInput) {
+        trackOrderSearchBtn.addEventListener('click', function() {
+            const searchTerm = trackOrderSearchInput.value.trim();
+            if (searchTerm) {
+                // Here you would typically search for the order and display results
+                console.log('Tracking order:', searchTerm);
+                // For now, just show an alert
+                alert('Tracking order: ' + searchTerm);
+            }
+        });
+        
+        trackOrderSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                trackOrderSearchBtn.click();
+            }
+        });
+    }
+});
+</script>
+
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-gray-900">Reset Password</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">Enter your email address and we'll send you a link to reset your password.</p>
+            <form id="forgotPasswordForm" class="space-y-4">
+                <div>
+                    <label for="resetEmail" class="block text-sm font-medium text-gray-700 mb-1">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" id="resetEmail" name="resetEmail" required
+                           class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="Enter your email">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Send Reset Link
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    
+    <div id="scroll-nav">
+        <a href="https://outlook.office.com/bookwithme/me" target="_blank">
+            <span><i class="fas fa-calendar-alt"></i> <b>Request</b></span><span> Request an Appointment</span>
+        </a>
+        <a aria-label="Chat on WhatsApp"
+            href="https://wa.me/+447387371872?text=I'm%20interested%20in%20your%20car%20for%20sale" target="_blank">
+            <span><i class="fab fa-whatsapp"></i> <b>WhatsApp</b></span><span> Chat to a WhatsApp</span>
+        </a>
+        <a href="https://www.linkedin.com/company/105474436/admin/dashboard/" target="_blank">
+            <span><i class="fab fa-linkedin"></i> <b>Find Us</b></span><span> Connect with Us on LinkedIn</span>
+        </a>
+        <a href="https://uk.trustpilot.com/review/digital-brains.io" target="_blank">
+            <span><img src="https://1000logos.net/wp-content/uploads/2022/09/Trustpilot-Symbol.png" alt="Trustpilot"
+                    style="width: 60px; height: auto;"> <b style="font-size: 9px;">Trustpilot</b></span><span> Leave a
+                Trustpilot <br> Review</span>
+        </a>
+
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div class="ww_right_content" style="background-color: whitesmoke;">
+
+
+
+        <div class="ti-widget" data-layout-id="5" data-set-id="light-background" data-pid="02d9ac2551017337855ef09de4"
+            data-pager-autoplay-timeout="6">
+            <div class="ti-widget-container ti-col-4">
+                <div class="ti-footer source-Google ti-clickable-link">
+                    <div class="ti-large-logo">
+                        <div class="ti-v-center"> <img class="ti-logo-fb"
+                                src="https://cdn.trustindex.io/assets/platform/Google/logo.svg" alt="Google" width="150"
+                                height="25"> </div>
+                    </div>
+                    <div class="ti-stars star-lg"> <span class="ti-star f"></span><span class="ti-star f"></span><span
+                            class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star e"></span>
+                    </div>
+                    <div class="ti-rating-text"> <strong class="ti-rating"> GOOD </strong> <span class="nowrap">Based on
+                            <strong><a href="" target="_blank" rel="noopener">463 ratings</a></strong>.</span>
+                    </div>
+                </div>
+                <div class="ti-reviews-container">
+                    <div class="ti-controls">
+                        <div class="ti-next" style="display: block;"></div>
+                        <div class="ti-prev" style="display: block;"></div>
+                    </div>
+                    <div class="ti-reviews-container-wrapper">
+                        <div class="ti-review-item source-Google" style="position: relative;">
+                            <div class="ti-inner">
+                                <div class="ti-review-header">
+                                    <div class="ti-profile-img"> <img
+                                            src="https://lh3.googleusercontent.com/a-/ACNPEu8F48IFj4PABIozzEkGFRCcpTzik9FI2k-bsC9ohg=s120-c-c-rp-w64-h64-mo-br100"
+                                            alt="diego tomasoni"> </div>
+                                    <div class="ti-profile-details">
+                                        <div class="ti-name"> Wonderful website! </div>
+                                        <div class="ti-date"><strong>Date of experience:</strong> <br>
+                                            September 22, 2024.</div>
+                                    </div>
+                                </div>
+                                <div class="ti-stars"><span class="ti-star f"></span><span
+                                        class="ti-star f"></span><span class="ti-star f"></span><span
+                                        class="ti-star f"></span><span class="ti-star f"></span></div>
+                                <div class="ti-review-content">Our website came out beautifully well. This company was
+                                    able to deliver a nice site. Smooth process from start to finish. The monthly
+                                    payment facility is really helpful.</div>
+                            </div>
+                        </div>
+                        <div class="ti-review-item source-Google" style="position: relative;">
+                            <div class="ti-inner">
+                                <div class="ti-review-header">
+                                    <div class="ti-profile-img"> <img
+                                            src="https://lh3.googleusercontent.com/a/ALm5wu3dIT0cBJJOefufggiKBG6TvcJrFEHLfbSMYY1o=s120-c-c-rp-w64-h64-mo-br100"
+                                            alt="Elio Basciani"> </div>
+                                    <div class="ti-profile-details">
+                                        <div class="ti-name"> Digital brains helped <br>our business go fly. </div>
+                                        <div class="ti-date"> <strong>Date of experience:</strong> <br>
+                                            October 15, 2024</div>
+                                    </div>
+                                </div>
+                                <div class="ti-stars"><span class="ti-star f"></span><span
+                                        class="ti-star f"></span><span class="ti-star f"></span><span
+                                        class="ti-star f"></span><span class="ti-star f"></span></div>
+                                <div class="ti-review-content"> We hired SEO services from Digital Brains which helped
+                                    us reach good traffic. Our business which started last year has become a national
+                                    business after the keywords started ranking, thanks to them. </div>
+                            </div>
+                        </div>
+                        <div class="ti-review-item source-Google" style="position: relative;">
+                            <div class="ti-inner">
+                                <div class="ti-review-header">
+                                    <div class="ti-profile-img"> <img
+                                            src="https://lh3.googleusercontent.com/a/AItbvmkh4q2jhW709798IQoVcR_BuCbUcX8nNtezzIM=s120-c-c-rp-w64-h64-mo-br100"
+                                            alt="Stefano pistone"> </div>
+                                    <div class="ti-profile-details">
+                                        <div class="ti-name">It's a great company to <br> have even small <br>tasks
+                                            done. </div>
+                                        <div class="ti-date"><strong>Date of experience:</strong> <br>
+                                            October 9, 2024</div>
+                                    </div>
+                                </div>
+                                <div class="ti-stars"><span class="ti-star f"></span><span
+                                        class="ti-star f"></span><span class="ti-star f"></span><span
+                                        class="ti-star f"></span><span class="ti-star f"></span></div>
+                                <div class="ti-review-content"> We require some frequent social media posts to engage
+                                    our customers. Digital brains helped us with these posts and also gave us a way to
+                                    generate extra sales for our business.</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="ti-controls-dots">
+                        <div class="dot" data-pager-state="0"></div>
+                        <div class="dot active" data-pager-state="1"></div>
+                        <div class="dot" data-pager-state="2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>// Review Slider Start
+        $(".review_slider").owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 500,
+            items: 1,
+            dots: false,
+            nav: false,
+        });
+
+        $('.selectpicker').on('show.bs.select', function ($this, e) {
+            typed4.stop();
+            //year_typed4.stop();
+            //model_typed4.stop();
+            autos_typed4.stop();
+        });
+
+        $('.selectpicker').on('hide.bs.select', function () {
+            typed4.start();
+            //year_typed4.start();
+            //model_typed4.start();
+            autos_typed4.start();
+        });
+    </script>
+    <br>
+    <br>
+    <br>
+
+
+
+    <!-- Required Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".review_slider").owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplaySpeed: 500,
+                items: 3,  /* Change this to 3 for showing 3 reviews per slide */
+                dots: false,
+                nav: false,
+                margin: 10, /* Add margin between reviews if necessary */
+                responsive: {
+                    0: {
+                        items: 1  /* Display 1 item for mobile screens */
+                    },
+                    600: {
+                        items: 2  /* Display 2 items for medium screens */
+                    },
+                    1000: {
+                        items: 3  /* Display 3 items for larger screens */
+                    }
+                }
+            });
+        });
+    </script>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <!-- Call-to-action Section - Home Page -->
+    <section id="cta-section" class="cta-section">
+        <div id="cta-container" class="container">
+            <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-xl-10">
+                    <div id="cta-text" class="text-center">
+
+                        <h3 id="cta-heading-large">Have a great online business idea!</h3>
+                        <p id="cta-paragraph">Let us listen to you. We like to listen and convert your dreams into a
+                            reality.
+                            Stop worrying about technology problems.
+                            Focus on your business. Let us provide the support you deserve.</p>
+                        <h5 id="cta-heading-small" class="text-white">Let’s get started</h5>
+                        <a id="cta-button" class="cta-btn" href="https://outlook.office.com/bookwithme/me">Book an
+                            Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Call-to-action Section -->
+
+
+
+    <footer id="footer" class="footer" style="background-color: #011224;">
+
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-about">
+                    <a href="https://digital-brains.io/" class="logo d-flex align-items-center" target="_blank"
+                        rel="noopener noreferrer">
+                        <img style="height: 80%;" loading="lazy"
+                            src="https://digital-brains.io/static/app/iguru3/assets/img/Digital_Brains_io.png" alt="">
+                    </a>
+                    <p>
+                        <strong> Your Partner in Digital Success</strong><br>
+                        Ready to Elevate Your Business?<br>
+                        At Digital Brains, we're dedicated to helping you achieve smart business by digitizing your
+                        business processes. Our comprehensive suite of services includes: <a href="#"><strong
+                                style="color: white;">Read more.........</strong></a>
+                    </p>
+
+
+                    <div class="social-links d-flex mt-4">
+                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/105474436/admin/dashboard/"><i
+                                class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Nearest Expert</a></li>
+                        <li><a href="#">Free Site Audit</a></li>
+                        <li><a href="#">Faqs</a></li>
+                        <li><a href="#">Website</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Content Creation</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Free Products</a></li>
+                        <li><a href="#">Website Projects</a></li>
+                        <li><a href="#">Awesome Screen Shots</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Re Seller</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Cookies Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Gdpr</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Employee Login</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p> Digital Brains.io Ltd</p>
+                    <p> 128 City Road,
+                        London, </p>
+                    <p>EC1V 2NX</p>
+                    <p class=""><strong>Company no : </strong> <span>15921176(England and Wales)</span></p>
+                    <!-- <p class="mt-4"><strong>Phone:</strong> <span>020 3005 7436</span></p> -->
+                    <!-- <p><strong>Support Email:</strong> <span>projects@digital-brains.io</span></p> -->
+                    <p><strong> Email:</strong> <span>projects@digital-brains.io</span></p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Digital Brains</strong> <span>All Rights
+                    Reserved</span></p>
+            <div class="credits">
+
+                Designed by <a href="" style="color: whitesmoke;">Digital Brains</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+
     <script src="script.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Forgot Password Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('forgotPasswordModal');
+            const forgotLink = document.getElementById('forgotPasswordLink');
+            const closeBtn = document.getElementById('closeModal');
+            const form = document.getElementById('forgotPasswordForm');
+
+            // Show modal when Forgot Password is clicked
+            forgotLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.classList.remove('hidden');
+            });
+
+            // Close modal when X is clicked
+            closeBtn.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+
+            // Close modal when clicking outside the modal
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            // Handle form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('resetEmail').value;
+                // Here you would typically send a reset password email
+                // For now, we'll just show an alert
+                alert('If an account exists with ' + email + ', you will receive a password reset link.');
+                modal.classList.add('hidden');
+                form.reset();
+            });
+        });
+    </script>
 </body>
 </html>
