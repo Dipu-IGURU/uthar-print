@@ -30,10 +30,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .form-input {
-            @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         .btn-primary {
-            @apply w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
         }
         .form-checkbox {
             -webkit-appearance: none;
@@ -1117,6 +1139,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
     <script>
         $(document).ready(function () {
             $(".review_slider").owlCarousel({
@@ -1142,17 +1168,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
-
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-    <!-- Owl Carousel JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     <!-- Call-to-action Section - Home Page -->
     <section id="cta-section" class="cta-section">
@@ -1271,7 +1286,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="preloader"></div>
 
 
-    <script src="script.js"></script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -1289,38 +1303,37 @@ document.addEventListener('DOMContentLoaded', function() {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('forgotPasswordModal');
-            const forgotLink = document.getElementById('forgotPasswordLink');
             const closeBtn = document.getElementById('closeModal');
             const form = document.getElementById('forgotPasswordForm');
 
-            // Show modal when Forgot Password is clicked
-            forgotLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                modal.classList.remove('hidden');
-            });
-
             // Close modal when X is clicked
-            closeBtn.addEventListener('click', function() {
-                modal.classList.add('hidden');
-            });
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.add('hidden');
+                });
+            }
 
             // Close modal when clicking outside the modal
-            window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.add('hidden');
-                }
-            });
+            if (modal) {
+                window.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.add('hidden');
+                    }
+                });
+            }
 
             // Handle form submission
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('resetEmail').value;
-                // Here you would typically send a reset password email
-                // For now, we'll just show an alert
-                alert('If an account exists with ' + email + ', you will receive a password reset link.');
-                modal.classList.add('hidden');
-                form.reset();
-            });
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('resetEmail').value;
+                    // Here you would typically send a reset password email
+                    // For now, we'll just show an alert
+                    alert('If an account exists with ' + email + ', you will receive a password reset link.');
+                    modal.classList.add('hidden');
+                    form.reset();
+                });
+            }
         });
     </script>
 </body>
